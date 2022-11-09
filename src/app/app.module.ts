@@ -10,12 +10,14 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
+import { UserDataService } from './Service/user-data.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+
 
   ],
   imports: [
@@ -26,6 +28,7 @@ import { HeaderComponent } from './header/header.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
