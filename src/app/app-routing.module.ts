@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
+import { IsLoggedGuard } from './Guards/is-logged.guard';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
+    canActivate:[IsLoggedGuard],
     loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
   },
 ];

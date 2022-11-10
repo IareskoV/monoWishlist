@@ -63,6 +63,7 @@ export class RegistrationComponent implements OnInit {
             error:({err})=> `${err}`
           })
         ).subscribe((s)=>{
+
           this.auth.onAuthStateChanged((user) => {
             if(user){
               const registeredUser = new UserData(name,undefined,email,user.uid,)

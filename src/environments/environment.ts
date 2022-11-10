@@ -13,6 +13,9 @@ export const environment = {
     messagingSenderId: '66984235467',
     measurementId: 'G-P1CNN31JF4',
   },
+  monobank:{
+    apiKey: 'uKS-KnoE837v2Lyc5kxy3QtQvp-Hwq9AJ7tnl8lF97YI',
+  },
   production: false
 };
 

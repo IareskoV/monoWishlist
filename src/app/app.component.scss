@@ -1,0 +1,14 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns:16vw 84vw;
+}
+.header{
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+.content{
+  grid-column-start: 2;
+  grid-column-end: 2;
+}

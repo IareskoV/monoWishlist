@@ -19,6 +19,8 @@ import {
   docData,
   collectionData,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { UserData } from '../Models/user-data';
 interface user {
   $key: string;
   firstName: string;
@@ -43,7 +45,7 @@ export abstract class CRUDService<T> {
     return addDoc(this.collectionRef, { ...(obj as any) });
   }
 
-  updateUser(id: string, obj: T) {
+  update(id: string, obj: T) {
     const docRef = doc(this.db, this.collectionName, id);
     const newObject: any = { ...obj };
     return updateDoc(docRef, newObject);
@@ -66,7 +68,7 @@ export abstract class CRUDService<T> {
 
   }
 
-  getUser(uid: string) {
+  getUser(uid: string){
     const docsRef =  collection(this.db, this.collectionName);
     return collectionData(query(docsRef, where('uid', '==', uid)), {
       idField: 'id'

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "monowishlist": {
+      "hosting": {
+        "current-directory": [
+          "monowishlist"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "monowishlist"
+  }
+}
