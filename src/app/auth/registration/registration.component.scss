@@ -1,0 +1,28 @@
+.form-container{
+  display: block;
+  max-width: 300px;
+  margin: auto;
+
+  background: #fafcff;
+  padding: 48px;
+  border-radius: 12px;
+}
+
+.form-container mat-form-field{
+  width: 100%;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.margin-top{
+  margin-top: 16px;
+}
+.text-center{
+  text-align: center;
+}
+.sing-up-link{
+  font-size: 1.2rem;
+  margin-left: 8px;
+}

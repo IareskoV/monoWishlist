@@ -1,5 +1,5 @@
 <header>
-  <h1>Mono wishlist</h1>
+  <h1>Mono-wishlist</h1>
   <ul>
     <ng-container *ngIf="authService.currentUser$ | async sa user; else login">
       <li><a routerLink="/user"*ngIf = "user$ | async as user">{{user.email}}</a></li>

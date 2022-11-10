@@ -3,6 +3,13 @@
   height: 100vh;
   display: grid;
   grid-template-columns:16vw 84vw;
+  backdrop-filter: blur(50px);
+}
+.app{
+  background-image: url("./media/monoBackground.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 .header{
   grid-column-start: 1;
