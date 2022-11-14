@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Add API key</h1>
+<div mat-dialog-content>Please add monobank Api key</div>
+<div mat-dialog-content>that u can found <a href="https://api.monobank.ua/">here</a></div>
+<form [formGroup]="apiForm" (ngSubmit)="submit()">
+  <mat-form-field>
+    <input matInput placeholder="Api" formControlName="api" />
+    <mat-error *ngIf="api?.errors?.['required']">
+      email is required</mat-error
+    >
+    <mat-error *ngIf="api?.errors?.['email']">
+      enter the correct format</mat-error
+    >
+  </mat-form-field>
+
+</form>
+
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="0">Cansel</button>
+  <button mat-button [mat-dialog-close]="submit()" cdkFocusInitial>Submit</button>
+</div>

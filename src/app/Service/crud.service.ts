@@ -19,7 +19,7 @@ import {
   docData,
   collectionData,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { UserData } from '../Models/user-data';
 interface user {
   $key: string;
@@ -42,7 +42,7 @@ export abstract class CRUDService<T> {
   }
 
   add(obj: T) {
-    return addDoc(this.collectionRef, { ...(obj as any) });
+    return from(addDoc(this.collectionRef, { ...(obj as any) }));
   }
 
   update(id: string, obj: T) {

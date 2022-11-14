@@ -1,0 +1,14 @@
+.content{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns:75% 25%;
+}
+.content__wishlist{
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+.content__wallet{
+  grid-column-start: 2;
+  grid-column-end: 2;
+}

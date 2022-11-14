@@ -8,7 +8,6 @@ Injectable({
 
 
 export class UserDataService extends CRUDService<UserData>  {
-
   collectionName = 'users';
   constructor(db: Firestore) {
     super(db);

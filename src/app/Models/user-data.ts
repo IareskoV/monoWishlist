@@ -28,4 +28,7 @@ export class UserData {
   public get fullname() {
     return `${this.secondNamae} ${this.firstName}`;
   }
+  public get wallet(){
+    return [this.balance,this.monobankApi]
+  }
 }

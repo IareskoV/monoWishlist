@@ -1,1 +1,24 @@
-<p>wish-list works!</p>
+<form [formGroup]="addItemForm" (ngSubmit)="submit()">
+  <mat-form-field>
+    <input matInput placeholder="Item name" formControlName="name" />
+    <mat-error *ngIf="name?.errors?.['required']">
+      Item name is required</mat-error
+    >
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="price"
+      formControlName="price"
+    />
+    <mat-error *ngIf="price?.errors?.['required']">
+      password is required</mat-error
+    >
+  </mat-form-field>
+  <div class="center margin-top">
+    <button type="submit" mat-button color="primary">add item</button>
+  </div>
+</form>
+<li *ngFor="let item of wishlist; index as i;" >
+  <ul>{{item.name}} {{item.price}}</ul>
+</li>
