@@ -1,9 +1,10 @@
 export class Items {
   public name:string
   public price:string
-  constructor(price:string,name:string){
+  // public uid:string
+  constructor(name:string,price:string){
     this.name = name,
     this.price = price
-
+    // this.uid = uid
   }
 }

@@ -20,5 +20,5 @@
   </div>
 </form>
 <li *ngFor="let item of wishlist; index as i;" >
-  <ul>{{item.name}} {{item.price}}</ul>
+  <ul><app-item-instance [id]="item"> </app-item-instance></ul>
 </li>

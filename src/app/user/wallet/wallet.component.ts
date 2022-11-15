@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AddApikeyModalComponent } from '../add-apikey-modal/add-apikey-modal.component';
 import { Output, EventEmitter } from '@angular/core';
+import { MonobankResponse } from 'src/app/Models/monobank-response';
 @Component({
   selector: 'app-wallet',
   templateUrl: './wallet.component.html',
@@ -15,7 +16,7 @@ export class WalletComponent implements OnInit {
   @Input() wallet:any
   @Output() updateApiEvent = new EventEmitter<string>();
   constructor(private http: HttpClient,  public dialog: MatDialog,) { }
-
+  balance = "loading"
   openDialog(
     enterAnimationDuration = '0ms',
     exitAnimationDuration = '0ms'
@@ -35,23 +36,28 @@ export class WalletComponent implements OnInit {
         }
       }
     });
+
   }
 
   ngOnInit(): void {
-    const headers= new HttpHeaders().set('X-Token', this.wallet.monobankApi)
 
-      this.http.get("https://api.monobank.ua/personal/client-info?",{ 'headers': headers }).subscribe((ans)=>{
-
-      })
-    if(this.wallet.monobankApi === ""){
-      console.log(this.wallet.monobankApi)
-      this.openDialog()
-    }
-    else{
-      const headers= new HttpHeaders().set('X-Token', this.wallet.monobankApi)
-      this.http.get("https://api.monobank.ua/personal/client-info?",{ 'headers': headers }).subscribe(ans=>{
-       console.log(ans)
-      })
+  }
+  ngOnChanges(){
+    if(this.wallet != "loading"){
+      if(this.wallet === ""){
+        this.openDialog()
+      }
+      else{
+        const headers= new HttpHeaders().set('X-Token', this.wallet)
+        this.http.get<MonobankResponse>("https://api.monobank.ua/personal/client-info?",{ 'headers': headers }).subscribe((ans)=>{
+          console.log(ans.accounts)
+          let temp = 0
+          ans.accounts.map(item=>{
+            temp += (item.balance/100)
+          })
+          this.balance = temp.toString()
+        })
+      }
     }
   }
 

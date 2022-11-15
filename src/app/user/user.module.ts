@@ -9,13 +9,15 @@ import { AddApikeyModalComponent } from './add-apikey-modal/add-apikey-modal.com
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatButtonModule} from '@angular/material/button'
 import { FormsModule,ReactiveFormsModule }   from '@angular/forms';
-import {MatInputModule} from '@angular/material/input'
+import {MatInputModule} from '@angular/material/input';
+import { ItemInstanceComponent } from './item-instance/item-instance.component'
 @NgModule({
   declarations: [
     UserComponent,
     WishListComponent,
     WalletComponent,
-    AddApikeyModalComponent
+    AddApikeyModalComponent,
+    ItemInstanceComponent
   ],
   imports: [
     CommonModule,

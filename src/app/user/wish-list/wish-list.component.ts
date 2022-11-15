@@ -13,7 +13,7 @@ import { ItemsService } from 'src/app/Service/items.service';
   styleUrls: ['./wish-list.component.scss']
 })
 export class WishListComponent implements OnInit {
-  @Input() wishlist:Items[] | undefined
+  @Input() wishlist:string[] | undefined
   @Output() addToWishlistEvent = new EventEmitter<string>();
 
   items:Items[] = []
@@ -34,7 +34,7 @@ export class WishListComponent implements OnInit {
       const { name,price } = this.addItemForm.value;
       console.log(name,price)
       if(price !=null && name != null){
-        const item = new Items(price,name)
+        const item = new Items(price,name,)
         this.itemsDb.add(item).subscribe(ans=>{
           const id = ans.id
           this.addToWishlistEvent.emit(id)
@@ -50,8 +50,19 @@ export class WishListComponent implements OnInit {
 
   }
   ngOnChanges( change: any){
-
+    if (this.arraysEqual(change.wishlist.previousValue , change.wishlist.currentValue)){
+      console.log(this.wishlist)
+    }
   }
+   arraysEqual(a:string[], b:string[]) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
 
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
 
 }

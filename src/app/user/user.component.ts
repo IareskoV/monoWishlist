@@ -22,50 +22,38 @@ export class UserComponent implements OnInit {
   id = ''
   items:Items[] = []
 
-  user = new UserData()
+  user = new UserData('','','','',[],'loading','loading')
   constructor(private router : Router, private auth:Auth, private firestore: Firestore,private http: HttpClient) {
    }
    updateApi(api:string){
-    this.user.monobankApi = api
-    this.db.update(this.id,this.user).then(ans=>{this.getUserData()})
+    let updatedUser = new UserData(this.user.firstName,this.user.secondName,this.user.email,this.user.uid,this.user.wishlist,this.user.balance,api)
+    this.db.update(this.id,updatedUser).then(ans=>{this.getUserData()})
 
    }
    updateWishlist(event:string){
-    this.user.wishlist.push(event)
-    this.db.update(this.id,this.user).then(ans=>this.getUserData())
+    let newWishlist = this.user.wishlist.concat(event)
+    let updatedUser = new UserData(this.user.firstName,this.user.secondName,this.user.email,this.user.uid,newWishlist,this.user.balance,this.user.monobankApi)
+    this.db.update(this.id,updatedUser).then(ans=>this.getUserData())
    }
 
 
   ngOnInit(): void {
 
     this.getUserData()
-    this.wishlistToItems()
   }
   getUserData(){
     if(this.auth.currentUser){
-      this.db.getUser(this.auth.currentUser.uid).subscribe(async arr=>{
+      this.db.getUser(this.auth.currentUser.uid).subscribe( arr=>{
         const obj = arr[0]
+
         this.user =  new UserData(obj['firstName'],undefined,obj['email'],obj['uid'],obj['wishlist'],obj['balance'],obj['monobankApi'])
         this.id = obj['id']
-        console.log(this.user)
         this.wishlistToItems()
       })
     }
   }
 wishlistToItems(){
-    if(this.user.wishlist  != undefined){
-      for (const item of this.user.wishlist) {
-        console.log(item)
-        this.itemsDb.get(item).subscribe(ans=>{
-          console.log(ans)
-          this.items = [...this.items,ans as Items]
-        })
-      }
-    }
+   this.db.getItemsbyArray(this.user.wishlist)
   }
 }
 
-function updateBalance(){
-  return
-
-}

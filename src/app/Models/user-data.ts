@@ -1,6 +1,6 @@
 export class UserData {
   public firstName;
-  public secondNamae: string;
+  public secondName: string;
   public email: string;
   public uid: string;
   public balance: string;
@@ -17,16 +17,17 @@ export class UserData {
     monobankApi: string = ''
   ) {
     this.firstName = firstName;
-    this.secondNamae = secondName;
+    this.secondName = secondName;
     this.email = email;
     this.uid = uid;
     this.wishlist = wishlist;
     this.balance = balance;
     this.monobankApi = monobankApi;
+    console.log(monobankApi)
   }
 
   public get fullname() {
-    return `${this.secondNamae} ${this.firstName}`;
+    return `${this.secondName} ${this.firstName}`;
   }
   public get wallet(){
     return [this.balance,this.monobankApi]

@@ -19,7 +19,7 @@ import {
   docData,
   collectionData,
 } from '@angular/fire/firestore';
-import { from, Observable } from 'rxjs';
+import { forkJoin, from, Observable } from 'rxjs';
 import { UserData } from '../Models/user-data';
 interface user {
   $key: string;
@@ -63,9 +63,7 @@ export abstract class CRUDService<T> {
 
   get(id: string) {
     const docRef = doc(this.db, this.collectionName, id);
-
     return docData(docRef, { idField: 'id' });
-
   }
 
   getUser(uid: string){
@@ -73,5 +71,10 @@ export abstract class CRUDService<T> {
     return collectionData(query(docsRef, where('uid', '==', uid)), {
       idField: 'id'
     });
+  }
+  getItemsbyArray(uids:string[]){
+    console.log(uids.map(uid=>{this.getUser(uid)}))
+    return uids.map(uid=>{this.getUser(uid)})
+
   }
 }
