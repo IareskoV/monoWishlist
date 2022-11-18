@@ -4,7 +4,7 @@ import { Firestore } from '@angular/fire/firestore';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from '@firebase/util';
 import { from } from 'rxjs';
-import { Items } from 'src/app/Models/items';
+import { Item } from 'src/app/Models/item';
 import { ItemsService } from 'src/app/Service/items.service';
 
 @Component({
@@ -15,8 +15,10 @@ import { ItemsService } from 'src/app/Service/items.service';
 export class WishListComponent implements OnInit {
   @Input() wishlist:string[] | undefined
   @Output() addToWishlistEvent = new EventEmitter<string>();
+  @Output() deleteItem = new EventEmitter<string>();
+  @Output() itemPriceEvent = new EventEmitter<Item>();
 
-  items:Items[] = []
+  items:Item[] = []
 
   addItemForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -34,13 +36,18 @@ export class WishListComponent implements OnInit {
       const { name,price } = this.addItemForm.value;
       console.log(name,price)
       if(price !=null && name != null){
-        const item = new Items(price,name,)
+        const item = new Item(price,name,)
         this.itemsDb.add(item).subscribe(ans=>{
           const id = ans.id
           this.addToWishlistEvent.emit(id)
           })
       }
     }
+  }
+  deleteI(id:string){
+    console.log(id)
+      this.deleteItem.emit(id)
+
   }
 
   constructor(private firestore: Firestore) { }
@@ -63,6 +70,9 @@ export class WishListComponent implements OnInit {
       if (a[i] !== b[i]) return false;
     }
     return true;
+  }
+  itemPrice(event:Item){
+    this.itemPriceEvent.emit(event)
   }
 
 }

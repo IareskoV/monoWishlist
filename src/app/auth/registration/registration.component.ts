@@ -5,9 +5,9 @@ import { Firestore } from '@angular/fire/firestore';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
-import { UserData } from 'src/app/Models/user-data';
+import { User } from 'src/app/Models/user';
 import { AuthService } from 'src/app/Service/auth.service';
-import { UserDataService } from 'src/app/Service/user-data.service';
+import { UserDataService } from 'src/app/Service/user.service';
 
 export function passwordMatchValidator():ValidatorFn{
   return (control:AbstractControl):ValidationErrors | null =>{
@@ -66,7 +66,7 @@ export class RegistrationComponent implements OnInit {
 
           this.auth.onAuthStateChanged((user) => {
             if(user){
-              const registeredUser = new UserData(name,undefined,email,user.uid,)
+              const registeredUser = new User(name,undefined,email,user.uid,)
               this.db.add(registeredUser)
             }})
           console.log(s)

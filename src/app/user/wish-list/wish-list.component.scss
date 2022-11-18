@@ -1,0 +1,38 @@
+.input{
+  margin-left: 20px;
+}
+.content{
+  margin-top: 40px;
+  border-radius: 30px;
+  background-color: rgba(250,252,255,0.9);
+  display: inline-block;
+  padding: 15px;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+}
+form{
+  max-width: 430px;
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+}
+ul{
+  max-width: 300px;
+}
+li{
+  margin-left: 30px;
+}
+.form-element{
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.item{
+  display: flex;
+  justify-content:space-between;
+  align-items:baseline;
+}
+.input__text{
+  color:#aeacca;
+}

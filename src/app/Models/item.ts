@@ -1,4 +1,4 @@
-export class Items {
+export class Item {
   public name:string
   public price:string
   // public uid:string

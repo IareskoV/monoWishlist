@@ -15,6 +15,7 @@ export class WalletComponent implements OnInit {
 
   @Input() wallet:any
   @Output() updateApiEvent = new EventEmitter<string>();
+  @Output() updateBalanceEvent = new EventEmitter<string>();
   constructor(private http: HttpClient,  public dialog: MatDialog,) { }
   balance = "loading"
   openDialog(
@@ -56,6 +57,7 @@ export class WalletComponent implements OnInit {
             temp += (item.balance/100)
           })
           this.balance = temp.toString()
+          this.updateBalanceEvent.emit(this.balance)
         })
       }
     }

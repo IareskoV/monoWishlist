@@ -1,5 +1,5 @@
 
 <div class="content">
-  <app-wish-list (addToWishlistEvent)="updateWishlist($event)" [wishlist]="user.wishlist" class="content__wishlist"></app-wish-list>
-  <app-wallet (updateApiEvent)="updateApi($event)" [wallet]="user.monobankApi" class="content__wallet"></app-wallet>
+  <app-wish-list (itemPriceEvent)="handlePrice($event)" (deleteItem)="handleDelete($event)" (addToWishlistEvent)="updateWishlist($event)" [wishlist]="user.wishlist" class="content__wishlist"></app-wish-list>
+  <app-wallet (updateBalanceEvent)="updateBalance($event)" (updateApiEvent)="updateApi($event)" [wallet]="user.monobankApi" class="content__wallet"></app-wallet>
 </div>

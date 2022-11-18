@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CRUDService } from './crud.service';
 import { Firestore } from '@angular/fire/firestore';
-import { UserData} from '../Models/user-data';
+import { User} from '../Models/user';
 Injectable({
   providedIn: 'root'
 })
 
 
-export class UserDataService extends CRUDService<UserData>  {
+export class UserDataService extends CRUDService<User>  {
   collectionName = 'users';
   constructor(db: Firestore) {
     super(db);

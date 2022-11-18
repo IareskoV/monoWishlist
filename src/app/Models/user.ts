@@ -1,4 +1,4 @@
-export class UserData {
+export class User {
   public firstName;
   public secondName: string;
   public email: string;

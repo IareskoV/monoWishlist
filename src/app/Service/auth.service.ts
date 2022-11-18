@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from '@angular/fire/auth';
-import { UserDataService } from './user-data.service';
+import { UserDataService } from './user.service';
 import { from, switchMap } from 'rxjs';
 
 @Injectable({

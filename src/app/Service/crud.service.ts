@@ -20,13 +20,8 @@ import {
   collectionData,
 } from '@angular/fire/firestore';
 import { forkJoin, from, Observable } from 'rxjs';
-import { UserData } from '../Models/user-data';
-interface user {
-  $key: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { User } from '../Models/user';
+
 
 @Injectable({
   providedIn: 'root',

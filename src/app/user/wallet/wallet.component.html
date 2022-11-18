@@ -1,1 +1,7 @@
-<p>balance {{balance}} грн</p>
+<div class="container">
+  <div class="card">
+    <span  class="balance balance__text" >{{balance}} <span class="balance__text" *ngIf="balance !='loading'">грн</span> </span>
+  </div>
+
+</div>
+

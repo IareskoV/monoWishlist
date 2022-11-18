@@ -7,8 +7,12 @@
 .content__wishlist{
   grid-column-start: 1;
   grid-column-end: 1;
+  margin-left: 50px;
 }
 .content__wallet{
   grid-column-start: 2;
   grid-column-end: 2;
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+  background-color: rgba(250,252,255,0.9);
 }

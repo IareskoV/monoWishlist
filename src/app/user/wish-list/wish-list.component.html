@@ -1,24 +1,40 @@
-<form [formGroup]="addItemForm" (ngSubmit)="submit()">
-  <mat-form-field>
-    <input matInput placeholder="Item name" formControlName="name" />
-    <mat-error *ngIf="name?.errors?.['required']">
-      Item name is required</mat-error
-    >
-  </mat-form-field>
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="price"
-      formControlName="price"
-    />
-    <mat-error *ngIf="price?.errors?.['required']">
-      password is required</mat-error
-    >
-  </mat-form-field>
-  <div class="center margin-top">
-    <button type="submit" mat-button color="primary">add item</button>
-  </div>
-</form>
-<li *ngFor="let item of wishlist; index as i;" >
-  <ul><app-item-instance [id]="item"> </app-item-instance></ul>
-</li>
+<div class="container">
+  <form class="content" [formGroup]="addItemForm" (ngSubmit)="submit()">
+    <mat-form-field class="input form-element">
+      <input
+        class="input__text"
+        matInput
+        placeholder="Item name"
+        formControlName="name"
+      />
+      <mat-error *ngIf="name?.errors?.['required']">
+        Item name is required</mat-error
+      >
+    </mat-form-field>
+    <mat-form-field class="input form-element">
+      <input
+        class="input__text"
+        matInput
+        placeholder="price"
+        formControlName="price"
+      />
+      <mat-error *ngIf="price?.errors?.['required']">
+        Price is required</mat-error
+      >
+    </mat-form-field>
+    <div class="form-element">
+      <button type="submit" mat-button color="primary">add item</button>
+    </div>
+  </form>
+  <ul class="content">
+    <li *ngFor="let item of wishlist; index as i">
+      <app-item-instance
+        (myPrice)="itemPrice($event)"
+        class="item"
+        (deleteItem)="deleteI($event)"
+        [id]="item"
+      >
+      </app-item-instance>
+    </li>
+  </ul>
+</div>

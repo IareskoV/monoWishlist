@@ -10,7 +10,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
-import { UserDataService } from './Service/user-data.service';
+import { UserDataService } from './Service/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({

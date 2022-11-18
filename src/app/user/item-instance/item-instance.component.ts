@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { Items } from 'src/app/Models/items';
+import { Item } from 'src/app/Models/item';
 import { ItemsService } from 'src/app/Service/items.service';
 
 @Component({
@@ -10,21 +10,27 @@ import { ItemsService } from 'src/app/Service/items.service';
   styleUrls: ['./item-instance.component.scss']
 })
 export class ItemInstanceComponent implements OnInit {
+  @Output() deleteItem = new EventEmitter<string>();
   @Input() id:string | undefined
-  item= new Items('loading',"loading")
+  @Output() myPrice = new EventEmitter<Item>();
+
+  item= new Item('loading',"loading")
   constructor( private firestore: Firestore) { }
   itemsDb = new ItemsService(this.firestore);
 
   ngOnInit(): void {
-    console.log(this.id)
     if(this.id){
       this.itemsDb.get(this.id).subscribe(ans=>{
-        const obj = ans as Items
-        this.item = new Items(obj['price'],obj['name'])
+        const obj = ans as Item
+        this.item = new Item(obj['price'],obj['name'])
+        this.myPrice.emit(this.item)
       })
     }
 
 
+  }
+  handleDelete(){
+    this.deleteItem.emit(this.id)
   }
 
 }
